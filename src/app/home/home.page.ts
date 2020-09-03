@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { aClass } from '../models/aClass';
 import { Student } from '../models/student';
 
@@ -14,6 +14,7 @@ import { MatDialog,MatDialogConfig} from "@angular/material/dialog";
 import { HeyComponent } from '../hey/hey.component';
 import { ThrowStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { EditClassComponent } from '../edit-class/edit-class.component';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -33,7 +34,8 @@ export class HomePage   {
   constructor(
    private addClassS: AddClassService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private ref: ChangeDetectorRef
   ) {
    addClassS.getMessage().subscribe(
     (m)=>{
@@ -88,6 +90,7 @@ export class HomePage   {
           this.classes.push(res.rows.item(i));
         }
         console.log(this.classes)
+        this.ref.detectChanges();
         
       }else{
         console.log("non")
@@ -103,6 +106,28 @@ export class HomePage   {
   }
   changeRoute (id,className) {
     this.router.navigate(['/class/'+id],{ state: { className: className } });
+  }
+
+  editClass(id,index){
+    console.log(id,index)
+    console.log("get rows")
+    this.ref.detectChanges();
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="85%";
+    dialogConfig.data=this.classes[index];
+    console.log(dialogConfig.data)
+    this.dialog.open(EditClassComponent,dialogConfig);
+    this.dialog.afterAllClosed.subscribe(
+      ()=>{
+        console.log("close;")
+        
+       
+        this.getClasses();
+      }
+    )
+    
   }
 
 }

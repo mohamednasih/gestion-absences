@@ -32,7 +32,7 @@ export class AddClassService {
   ) {
 
     this.sqlite.create({
-      name: 'ATT3',
+      name: 'les_ab_db3',
       location: 'default'
     })
       .then((db: SQLiteObject) => {
@@ -46,11 +46,11 @@ export class AddClassService {
           .then(() => console.log('Executed SQL'))
           .catch(e => console.log(e));
 
-        db.executeSql('create table  if not exists student (id varchar(32) PRIMARY KEY ,prenom VARCHAR(32),nom VARCHAR(32),classId intger,FOREIGN KEY(classId) REFERENCES class(id))', [])
+        db.executeSql('create table  if not exists student (id varchar(32) PRIMARY KEY ,prenom VARCHAR(32),nom VARCHAR(32),classId intger,FOREIGN KEY(classId) REFERENCES class(id) ON DELETE CASCADE)', [])
           .then(() => console.log('Executed SQL'))
           .catch(e => console.log(e));
 
-        db.executeSql('create table   if not exists absence (id integer PRIMARY KEY AUTOINCREMENT,date integer ,observation VARCHAR(32),studentId varchar(32),FOREIGN KEY(studentId) REFERENCES student(id))', [])
+        db.executeSql('create table   if not exists absence (id integer PRIMARY KEY AUTOINCREMENT,date integer ,observation VARCHAR(32),studentId varchar(32),FOREIGN KEY(studentId) REFERENCES student(id) ON DELETE CASCADE)', [])
           .then(() => console.log('Executed SQL'))
           .catch(e => console.log(e));
 
@@ -60,6 +60,21 @@ export class AddClassService {
       .catch(e => console.log(e));
     
   }
+
+  updateTitreClass(idClass,titre){
+    return this.databaseObj.executeSql(`
+    update class  set titre='${titre}' where id=${idClass}
+    `
+    , [])
+  }
+
+  deleteClass(idClass){
+    return this.databaseObj.executeSql(`
+    delete from class  where id=${idClass}
+    `
+    , [])
+  }
+
   delete(idAbsence){
     return this.databaseObj.executeSql(`
     delete from absence  where id=${idAbsence}
@@ -166,11 +181,14 @@ parseExcel(fileEntry) {
         XLSX.utils.sheet_to_json(worksheet, { raw: true }).forEach((e: Student) => {
           this.addStudent(e,this.idClass);
           console.log(e)
-        });
+        }
+        
+        );
+       
       }else{
         alert("add class first")
       }
-      
+      this.sendMessage("databaseOpened")
     }.bind(this)
 
 
