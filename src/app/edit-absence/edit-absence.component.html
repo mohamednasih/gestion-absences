@@ -1,0 +1,13 @@
+<div class="form-group">
+  <label>Observation</label>
+  <input [(ngModel)]="data.observation" class="form-control">
+</div>
+<div class="btn-control">
+  <button (click)="onClose()">Cancel</button>
+  <button 
+  (click)="update()"
+  class="btn-success">Save</button>
+</div>
+<button 
+(click)="delete()"
+class="btn-lg w-100 btn-danger mt-4">Delete</button>

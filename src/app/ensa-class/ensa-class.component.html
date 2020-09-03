@@ -1,0 +1,69 @@
+<!-- <div class="p-auto" nopadding>
+ 
+
+</div> -->
+<ion-app  > 
+  <ion-content >
+   
+    <div class="header">
+      <div>
+          <strong>Class</strong>
+          <br>
+         {{className}}
+      </div>
+      <div>     <strong>Date</strong>
+        <br>
+
+                {{date|date}}
+      </div>
+    </div>
+
+    <div class="contai mt-4 p-2 pt-0 mt-0">
+     
+        <div 
+        
+       
+          class="student" (click)="goToStudent(student.id)"
+
+        *ngFor="let student of students,let index=index" style="background-color: #ffffff;">
+          
+
+          <div 
+          
+          (click)="profile(student[0].id, student[0].nom,student[0].prenom)"
+          
+          class="profile w-60">
+            <strong>
+              {{student[0].nom}} {{student[0].prenom}}
+             </strong> 
+             <br>
+             ID:{{student[0].id}}
+             <br>
+             
+          </div>
+          <div class="status">
+              <div 
+              
+              (click)="makePresent(index)"
+              *ngIf="this.students[index][1]" class="absent"><p>A</p></div>
+              <div 
+              (click)="makeAbsent(index)"
+              *ngIf="!this.students[index][1]" class="present"><p>P</p></div>
+          </div>
+          </div>
+       
+       
+    
+    </div>
+    <div 
+  
+    (click)="insertAbsents()"
+    class="btn  submit">
+          Submit
+    </div>
+   
+  
+  </ion-content>
+  
+  
+</ion-app>

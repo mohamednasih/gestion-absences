@@ -1,0 +1,29 @@
+<div>
+  <label> Class Name</label>
+  <input [(ngModel)]="className"
+   required
+  name="className"
+  #classNam="ngModel">
+  <div *ngIf="classNam.invalid && (classNam.dirty || classNam.touched)"></div>
+    <div *ngIf="classNam.errors" class="aler alert-danger"> field required</div>
+</div>
+
+<div class="mt-2" style="display: flex;justify-content: space-between;">
+  <div>
+    <button
+    
+    (click)="onClose()"
+    >
+      Close
+    </button>
+  </div>
+  <div>
+    <button 
+    (click)="add()"
+    [disabled]="classNam.invalid"
+    class="btn-primary">
+      Add
+    </button>
+  </div>
+  
+</div>

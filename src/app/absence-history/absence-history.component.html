@@ -1,0 +1,49 @@
+<ion-content>
+<div >
+
+  <div class="header">
+    <div>
+      <strong>Name</strong><br>
+      <span>{{name}}</span>
+    </div>
+
+    <div>
+      <strong>Absences</strong><br>
+      <span class="absentLength">{{absences.length}}</span>
+    </div>
+
+  </div>
+  
+  
+    <div 
+  style="overflow: scroll;"
+  class="mt-4">
+
+      <div 
+      class="absence"
+      *ngFor="let absence of absences,let index=index">
+        
+        <div class="short">
+          <strong>
+            {{absence.date|date}} 
+          </strong><br>
+        </div>
+        <div class="middle">
+          {{absence.observation}}
+        </div>
+        <div 
+        
+        (click)="editAbsense(absence.id,index)"
+        class="short">
+            <img src="../../assets/pen.svg" alt="">
+        </div>
+        
+      </div>
+
+  </div>
+
+  
+
+
+</div>
+</ion-content>

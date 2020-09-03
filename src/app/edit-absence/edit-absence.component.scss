@@ -1,0 +1,12 @@
+.btn-control {
+
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        display: block;
+        font-size: larger;
+        padding: 0.7em 1.5em;
+        width: 45%;
+    }
+}

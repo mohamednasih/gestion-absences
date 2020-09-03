@@ -1,7 +1,8 @@
 {
   "name": "abs",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

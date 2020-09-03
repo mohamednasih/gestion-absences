@@ -1,0 +1,47 @@
+.absentLength {
+    color: #CD3A47;
+    font-size: xx-large;
+    margin-top: 1em;
+}
+
+.header {
+    display: flex;
+    background-color: #F4F4F4;
+    border-right: 2px solid #EDEDED;
+
+    div {
+        width: 50%;
+        height: 5em;
+        text-align: center;
+        padding-top: 1em;
+        border-right: 2px solid #EDEDED;
+    }
+}
+
+.absence {
+    overflow: scroll;
+    display: flex;
+    justify-content: space-between;
+    outline: none;
+    border-bottom: 2px solid #CCCCD4;
+    padding: 1em 0;
+    min-height: 5em;
+
+
+    .short {
+        width: 15%;
+        margin-left: 1em;
+    }
+
+    .middle {
+        width: 62%;
+    }
+
+    .edit {
+        border-left: 2px solid #CCCCD4;
+
+        img {
+            max-height: 5em;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+ion-icon {
+  font-size: 3em;
+
+}
+
+
+
+.btn {
+  border: none;
+  background-color: #F4F4F4;
+
+}
+
+.header-classes {
+  display: flex;
+  background-color: #F4F4F4;
+  border-right: 2px solid #EDEDED;
+
+  div {
+    width: 50%;
+    height: 5em;
+    text-align: center;
+    padding-top: 1em;
+    border-right: 2px solid #EDEDED;
+  }
+}
+
+.count {
+  color: green;
+  font-weight: 900;
+  font-size: x-large;
+}
+
+.aClass {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: none;
+  border-bottom: 2px solid #CCCCD4;
+  padding: 1em 0;
+  max-width: 100vw;
+
+}
+
+.edit {
+
+  margin-right: 2.5em;
+
+  img {
+    max-height: 5em;
+
+  }
+}
+
+.classTitre {
+  margin-left: 1.5em;
+  min-width: 60vw;
+  font-size: x-large;
+  text-transform: uppercase;
+}
