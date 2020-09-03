@@ -1,18 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { aClass } from '../models/aClass';
 import { Student } from '../models/student';
-
-import { FileChooser } from '@ionic-native/file-chooser/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { File, FileEntry } from '@ionic-native/file/ngx';
-
-import * as XLSX from 'xlsx';
-import { Chooser } from '@ionic-native/chooser/ngx';
 import { AddClassService } from './services/add-class.service';
 import { MatDialog,MatDialogConfig} from "@angular/material/dialog";
 import { HeyComponent } from '../hey/hey.component';
-import { ThrowStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { EditClassComponent } from '../edit-class/edit-class.component';
 @Component({
@@ -34,6 +24,7 @@ export class HomePage   {
   constructor(
    private addClassS: AddClassService,
     private dialog: MatDialog,
+    private dialog2: MatDialog,
     private router: Router,
     private ref: ChangeDetectorRef
   ) {
@@ -58,6 +49,9 @@ export class HomePage   {
     dialogConfig.autoFocus=true;
     dialogConfig.width="70%";
     this.dialog.open(HeyComponent,dialogConfig)
+    this.dialog.afterAllClosed.subscribe(
+      ()=>{this.dialog.closeAll()}
+    )
     //this.addClassS.getRows();
   }
   getRows(){
@@ -118,13 +112,14 @@ export class HomePage   {
     dialogConfig.width="85%";
     dialogConfig.data=this.classes[index];
     console.log(dialogConfig.data)
-    this.dialog.open(EditClassComponent,dialogConfig);
-    this.dialog.afterAllClosed.subscribe(
+    this.dialog2.open(EditClassComponent,dialogConfig);
+    this.dialog2.afterAllClosed.subscribe(
       ()=>{
         console.log("close;")
         
        
         this.getClasses();
+        this.dialog2.closeAll();
       }
     )
     
